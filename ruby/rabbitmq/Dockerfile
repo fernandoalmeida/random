@@ -16,7 +16,7 @@ RUN chmod +x /usr/local/bin/rabbitmqadmin
 RUN rabbitmqadmin --bash-completion > /etc/bash_completion.d/rabbitmqadmin
 
 # Install ruby gems (clients)
-RUN gem install bunny
+RUN gem install bunny sneakers
 
 # Autostart service on user login
 RUN echo "/etc/init.d/rabbitmq-server start" >> /etc/bash.bashrc
