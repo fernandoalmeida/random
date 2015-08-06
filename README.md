@@ -7,3 +7,7 @@
 ### Ruby
 
 * RabbitMQ client
+
+### Java
+
+* [WIP] A Jenkins plugin
