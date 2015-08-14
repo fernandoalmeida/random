@@ -5,7 +5,6 @@ build:
 
 run:
 	docker run \
-	  	-v ${PWD}/data:/app \
 		-p 8080:8080 \
 		-it fernandoalmeida/jenkins
 
