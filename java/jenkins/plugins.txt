@@ -1,3 +1,4 @@
 debian-package-builder:latest
 git:latest
 gitlab-plugin:latest
+workflow-aggregator:latest
