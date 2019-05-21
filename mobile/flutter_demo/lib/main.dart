@@ -1,4 +1,7 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 void main() => runApp(MyApp());
 
@@ -44,6 +47,8 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  static const platform = const MethodChannel('flutter_demo/native_integration');
+  String _nativeDataResult = 'Unknown result';
   int _counter = 0;
 
   void _incrementCounter() {
@@ -98,6 +103,16 @@ class _MyHomePageState extends State<MyHomePage> {
               '$_counter',
               style: Theme.of(context).textTheme.display1,
             ),
+            Padding(
+              padding: EdgeInsets.all(20),
+              child: FlatButton(
+                child: Text('Run native code'),
+                color: Colors.green,
+                textColor: Colors.white,
+                onPressed: _runNativeCode
+              ),
+            ),
+            Text(_nativeDataResult),
           ],
         ),
       ),
@@ -107,5 +122,21 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
+  }
+
+  _runNativeCode() async {
+    String result;
+
+    try {
+      final String data = await platform.invokeMethod('getDataViaNative');
+
+      result = data;
+    } on PlatformException catch(e) {
+      result = "Failed to run native code: ${e.message}.";
+    }
+
+    setState(() {
+        _nativeDataResult = result;
+    });
   }
 }
