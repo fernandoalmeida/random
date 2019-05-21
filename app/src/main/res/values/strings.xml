@@ -5,4 +5,5 @@
     <string name="euro_value">Valor em Euro</string>
     <string name="calculate">Calcular</string>
     <string name="type_the_real_value">Digite o valor em Real</string>
+    <string name="flutter">Flutter Screen</string>
 </resources>
