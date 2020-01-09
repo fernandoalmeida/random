@@ -11,3 +11,6 @@
 /build
 /captures
 .externalNativeBuild
+/haskell/hello/*
+!/haskell/hello/*.hs
+!/haskell/hello/Makefile

@@ -13,3 +13,7 @@
 ### Java
 
 * [WIP] A Jenkins plugin
+
+### Haskell
+
+* Hello World
