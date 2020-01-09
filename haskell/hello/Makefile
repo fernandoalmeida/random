@@ -2,7 +2,7 @@ build:
 	ghc -o hello hello.hs
 
 run: build
-	./hello Fernando
+	./hello
 
 clean:
 	@rm -f hello
