@@ -1,0 +1,22 @@
+name:                scheme
+version:             0.1.0.0
+synopsis:            A LISP/scheme interpreter written in Haskell
+-- description:
+license:             GPL-3
+license-file:        LICENSE
+author:              Fernando Almeida
+maintainer:          fernando@fernandoalmeida.net
+-- copyright:
+category:            Development
+build-type:          Simple
+extra-source-files:  CHANGELOG.md
+cabal-version:       >=1.10
+
+executable scheme
+  main-is:             Main.hs
+  -- other-modules:
+  -- other-extensions:
+  build-depends:       base >=4.12 && <4.13
+                     , parsec >=3.1.14
+  hs-source-dirs:      src
+  default-language:    Haskell2010
