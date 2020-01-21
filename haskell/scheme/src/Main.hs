@@ -39,12 +39,22 @@ parseAtom = do
 parseString :: Parser LispVal
 parseString = do
   char '"'
-  s <- many (noneOf "\"")
+  s <- many (escapedChar <|> noneOf ['\\', '"'])
   char '"'
   return $ String s
 
+escapedChar :: Parser Char
+escapedChar = do char '\\'
+                 c <- oneOf ['\\', '"', 'n', 'r', 't']
+                 return $ case c of
+                          '\\' -> c
+                          '"' -> c
+                          'n' -> '\n'
+                          'r' -> '\r'
+                          't' -> '\t'
+
 parseNumber :: Parser LispVal
-parseNumber = liftM (Number . read) $ many1 digit
+parseNumber = do ((many1 digit) >>= (\x -> return $ (Number . read) x))
 
 spaces :: Parser ()
 spaces = skipMany1 space
