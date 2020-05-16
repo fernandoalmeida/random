@@ -14,6 +14,7 @@ mod schema;
 mod models;
 mod errors;
 mod invitation_handler;
+mod register_handler;
 
 fn main() -> std::io::Result<()> {
     dotenv::dotenv().ok();
@@ -47,7 +48,7 @@ fn main() -> std::io::Result<()> {
                     )
                     .service(
                         web::resource("/register/{invitation_id}")
-                            .route(web::post().to(||{}))
+                            .route(web::post().to_async(register_handler::register_user))
                     )
                     .service(
                         web::resource("/auth")

@@ -20,3 +20,34 @@ impl<T> From<T> for Invitation where T: Into<String> {
         }
     }
 }
+
+#[derive(Debug, Serialize, Deserialize, Queryable, Insertable)]
+#[table_name = "users"]
+pub struct User {
+    pub email: String,
+    pub encrypted_password: String,
+    pub created_at: chrono::NaiveDateTime,
+}
+
+impl User {
+    pub fn from_details<S: Into<String>, T: Into<String>>(email: S, password: T) -> Self {
+        User {
+            email: email.into(),
+            encrypted_password: password.into(),
+            created_at: chrono::Local::now().naive_local(),
+        }
+    }
+}
+
+#[derive(Debug, Serialize, Deserialize)]
+pub struct SlimUser {
+    pub email: String,
+}
+
+impl From<User> for SlimUser {
+    fn from(user: User) -> Self {
+        SlimUser {
+            email: user.email,
+        }
+    }
+}

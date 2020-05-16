@@ -7,6 +7,7 @@ edition = "2018"
 [dependencies]
 actix-identity = "0.1.0"
 actix-web = "1.0.3"
+argonautica = "0.2.0"
 chrono = { version = "0.4.6", features = ["serde"] }
 derive_more = "0.15.0"
 diesel = { version = "1.4.2", features = ["postgres","uuidv07", "r2d2", "chrono"] }

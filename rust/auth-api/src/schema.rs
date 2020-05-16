@@ -5,3 +5,16 @@ table! {
         expires_at -> Timestamp,
     }
 }
+
+table! {
+    users (email) {
+        email -> Varchar,
+        encrypted_password -> Varchar,
+        created_at -> Timestamp,
+    }
+}
+
+allow_tables_to_appear_in_same_query!(
+    invitations,
+    users,
+);
