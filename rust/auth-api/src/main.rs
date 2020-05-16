@@ -54,8 +54,8 @@ fn main() -> std::io::Result<()> {
                     .service(
                         web::resource("/auth")
                             .route(web::post().to_async(auth_handler::login))
-                            .route(web::delete().to(||{}))
                             .route(web::get().to_async(auth_handler::user_info))
+                            .route(web::delete().to_async(auth_handler::logout))
                     )
             )
     })

@@ -86,3 +86,8 @@ pub fn verify(encrypted_password: &str, password: &str) -> Result<bool, ServiceE
 pub fn user_info(logged_user: LoggedUser) -> HttpResponse {
     HttpResponse::Ok().json(logged_user)
 }
+
+pub fn logout(id: Identity) -> HttpResponse {
+    id.forget();
+    HttpResponse::Ok().finish()
+}
