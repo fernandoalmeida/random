@@ -17,3 +17,7 @@
 ### Haskell
 
 * Hello World
+
+### Rust
+
+* HTTP/Rest API with user invitation, registration and authentication

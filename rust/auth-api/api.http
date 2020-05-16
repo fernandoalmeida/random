@@ -1,0 +1,52 @@
+# -*- mode: restclient -*-
+
+:email = "rust.auth.api@mailinator.com"
+:password = "123456"
+#
+# send invitation
+#
+POST http://localhost:4000/api/invitation
+Content-Type: application/json
+
+{
+  "email": :email
+}
+
+#
+# register invited user
+#
+:invitation_id = f0d56268-375e-4700-9dae-566ae7c5a912
+POST http://localhost:4000/api/register/:invitation_id
+Content-Type: application/json
+
+{
+  "password": :password
+}
+
+#
+# login
+#
+POST http://localhost:4000/api/auth
+Content-Type: application/json
+
+{
+  "email": :email,
+  "password": :password
+}
+
+#
+
+#
+# user info
+#
+:auth-cookie = auth=8DHUP/7qP3SqAfuXTEnvbiSxqYj3s29ccgkBKKzA8Vc2st7UHAFtnwudKiytokrNzyv0cIYrcDizpgVSBDiJwhqrE5U=
+GET http://localhost:4000/api/auth
+Content-Type: application/json
+Cookie: :auth-cookie
+
+#
+# logout
+#
+DELETE http://localhost:4000/api/auth
+Content-Type: application/json
+Cookie: :auth-cookie
