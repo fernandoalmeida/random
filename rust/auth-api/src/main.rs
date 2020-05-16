@@ -15,6 +15,7 @@ mod models;
 mod errors;
 mod invitation_handler;
 mod register_handler;
+mod auth_handler;
 
 fn main() -> std::io::Result<()> {
     dotenv::dotenv().ok();
@@ -52,8 +53,8 @@ fn main() -> std::io::Result<()> {
                     )
                     .service(
                         web::resource("/auth")
+                            .route(web::post().to_async(auth_handler::login))
                             .route(web::get().to(||{}))
-                            .route(web::post().to(||{}))
                             .route(web::delete().to(||{}))
                     )
             )
