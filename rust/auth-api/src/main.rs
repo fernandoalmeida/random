@@ -10,11 +10,14 @@ use actix_web::{middleware, web, App, HttpServer};
 use diesel::prelude::*;
 use diesel::r2d2::{self, ConnectionManager};
 
+mod schema;
 mod models;
+mod errors;
+mod invitation_handler;
 
 fn main() -> std::io::Result<()> {
     dotenv::dotenv().ok();
-    std::env::set_var("RUST_LOG", "actix_web=info,actix_server=info");
+    std::env::set_var("RUST_LOG", "actix_web=debug,actix_server=debug");
     env_logger::init();
 
     let database_url = std::env::var("DATABASE_URL").expect("DATABASE_URL must be set");
@@ -40,7 +43,7 @@ fn main() -> std::io::Result<()> {
                 web::scope("/api")
                     .service(
                         web::resource("/invitation")
-                            .route(web::post().to(||{}))
+                            .route(web::post().to_async(invitation_handler::post_invitation))
                     )
                     .service(
                         web::resource("/register/{invitation_id}")
