@@ -82,3 +82,7 @@ pub fn verify(encrypted_password: &str, password: &str) -> Result<bool, ServiceE
             ServiceError::Unauthorized
         })
 }
+
+pub fn user_info(logged_user: LoggedUser) -> HttpResponse {
+    HttpResponse::Ok().json(logged_user)
+}
