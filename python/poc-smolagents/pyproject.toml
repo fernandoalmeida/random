@@ -1,0 +1,11 @@
+[project]
+name = "poc-smolagents"
+version = "0.1.0"
+description = "POC with SmolAgents framework"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "huggingface-hub>=0.30.2",
+    "python-dotenv>=1.1.0",
+    "smolagents[transformers]>=1.13.0",
+]

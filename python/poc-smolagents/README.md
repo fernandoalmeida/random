@@ -1,0 +1,1 @@
+# POC with SmolAgents framework
